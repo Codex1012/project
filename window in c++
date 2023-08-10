@@ -1,0 +1,27 @@
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nShowCmd) {
+    // create window class
+    WNDCLASSW window_class = {};  // Note the "W" suffix for wide characters
+    window_class.style = CS_HREDRAW | CS_VREDRAW;
+    window_class.lpfnWndProc = window_callback;
+    window_class.lpszClassName = L"MyWindowClass";  // Use wide-character string
+
+    // register class
+    RegisterClass(&window_class);  // Note the "W" suffix
+
+    // create window
+    HWND window = CreateWindow(window_class.lpszClassName, L"My First Game in C++", WS_OVERLAPPEDWINDOW | WS_VISIBLE, CW_USEDEFAULT, CW_USEDEFAULT, 1280, 720, 0, 0, hInstance, 0);
+
+    
+    
+    while (running) {
+        //input
+        MSG message;
+        while (PeekMessage(&message, window, 0, 0, PM_REMOVE)) {
+            TranslateMessage(&message);
+            DispatchMessage(&message);
+        }
+        //simulate
+
+        //render
+    }
+}
